@@ -1,0 +1,12 @@
+language: python
+
+python:
+  - "2.7"
+
+install:
+  - pip install ansible
+  - ansible-galaxy install goozbach.EPEL
+
+script:
+  - echo localhost > inventory
+  - ansible-playbook --syntax-check -i inventory test.yml

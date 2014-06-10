@@ -1,4 +1,4 @@
-supervisor
+supervisor [![Build Status](https://travis-ci.org/xcezx/ansible-supervisor.svg)](https://travis-ci.org/xcezx/ansible-supervisor)
 ========
 
 install and configuration supervisor
