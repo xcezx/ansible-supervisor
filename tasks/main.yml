@@ -1,0 +1,25 @@
+- name: installed packages
+  command: rpm -qa
+  register: installed_packages
+
+- name: install packages
+  sudo: yes
+  yum:
+    name: "{{ supervisor_rpm_url }}"
+    state: present
+    enablerepo: epel
+  when: installed_packages.stdout.find('supervisor') == -1
+
+- name: configure supervisord.conf
+  sudo: yes
+  template:
+    src: supervisord.conf.j2
+    dest: /etc/supervisord.conf
+  notify: restart supervisord
+
+- name: ensure restarted supervisord service
+  sudo: yes
+  service:
+    name: supervisord
+    state: restarted
+    enabled: yes

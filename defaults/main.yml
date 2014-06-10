@@ -1,0 +1,24 @@
+supervisor_rpm_url: "ftp://ftp.pbone.net/mirror/ftp5.gwdg.de/pub/opensuse/repositories/home:/presbrey:/py/EL6/noarch/supervisor-3.0-13.1.noarch.rpm"
+
+supervisor_settings:
+  unix_http_server:
+    file: "/var/tmp/supervisor.sock"
+
+  supervisord:
+    logfile: "/var/log/supervisor/supervisord.log"
+    logfile_maxbytes: "50MB"
+    logfile_backups: 10
+    loglevel: "info"
+    pidfile: "/var/run/supervisord.pid"
+    nodaemon: "false"
+    minfds: 1024
+    minprocs: 200
+
+  "rpcinterface:supervisor":
+    "supervisor.rpcinterface_factory": "supervisor.rpcinterface:make_main_rpcinterface"
+
+  supervisorctl:
+    serverurl: "unix:///var/tmp/supervisor.sock"
+
+  include:
+    files: "supervisord.d/*.ini"

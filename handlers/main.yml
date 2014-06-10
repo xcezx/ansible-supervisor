@@ -1,0 +1,5 @@
+- name: restart supervisord
+  sudo: yes
+  service:
+    name: supervisord
+    state: restarted
