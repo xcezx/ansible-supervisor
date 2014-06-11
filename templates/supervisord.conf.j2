@@ -1,7 +1,0 @@
-; {{ ansible_managed }}
-{% for section in supervisor_settings.iterkeys() %}
-[{{ section | e }}]
-{%   for key, value in supervisor_settings[section].iteritems() %}
-{{ key | e }}={{ value | e }}
-{%   endfor %}
-{% endfor %}

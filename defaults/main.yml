@@ -1,24 +1,18 @@
 supervisor_rpm_url: "ftp://ftp.pbone.net/mirror/ftp5.gwdg.de/pub/opensuse/repositories/home:/presbrey:/py/EL6/noarch/supervisor-3.0-13.1.noarch.rpm"
 
-supervisor_settings:
-  unix_http_server:
-    file: "/var/tmp/supervisor.sock"
+supervisor_default_settings:
+  - { section: "unix_http_server", option: "file", value: "/var/tmp/supervisor.sock" }
 
-  supervisord:
-    logfile: "/var/log/supervisor/supervisord.log"
-    logfile_maxbytes: "50MB"
-    logfile_backups: 10
-    loglevel: "info"
-    pidfile: "/var/run/supervisord.pid"
-    nodaemon: "false"
-    minfds: 1024
-    minprocs: 200
+  - { section: "supervisord", option: "logfile", value: "/var/log/supervisor/supervisord.log" }
+  - { section: "supervisord", option: "logfile_maxbytes", value: "50MB" }
+  - { section: "supervisord", option: "logfile_backups", value: 10 }
+  - { section: "supervisord", option: "pidfile", value: "/var/run/supervisord.pid" }
+  - { section: "supervisord", option: "nodaemon", value: "false" }
+  - { section: "supervisord", option: "minfds", value: 1024 }
+  - { section: "supervisord", option: "minprocs", value: 200 }
 
-  "rpcinterface:supervisor":
-    "supervisor.rpcinterface_factory": "supervisor.rpcinterface:make_main_rpcinterface"
+  - { section: "rpcinterface:supervisor", option: "supervisor.rpcinterface_factory", value: "supervisor.rpcinterface:make_main_rpcinterface" }
 
-  supervisorctl:
-    serverurl: "unix:///var/tmp/supervisor.sock"
+  - { section: "supervisorctl", option: "serverurl", value: "unix:///var/tmp/supervisor.sock" }
 
-  include:
-    files: "supervisord.d/*.ini"
+  - { section: "include", option: "files", value: "supervisord.d/*.ini" }

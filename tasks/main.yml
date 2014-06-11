@@ -12,10 +12,13 @@
 
 - name: configure supervisord.conf
   sudo: yes
-  template:
-    src: supervisord.conf.j2
+  ini_file:
     dest: /etc/supervisord.conf
-  notify: restart supervisord
+    section: "{{ item.section }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value }}"
+  with_items:
+    - "{{ supervisor_default_settings }}"
 
 - name: ensure restarted supervisord service
   sudo: yes
