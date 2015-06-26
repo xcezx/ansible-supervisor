@@ -1,4 +1,6 @@
 - hosts: all
+  vars_files:
+    - vars/main.yml
   tasks:
     - yum: name=epel-release
     - include: tasks/main.yml
