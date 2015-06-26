@@ -1,4 +1,4 @@
-xcezx.supervisor
+xcezx.supervisor [![Circle CI](https://circleci.com/gh/xcezx/ansible-supervisor.svg?style=svg)](https://circleci.com/gh/xcezx/ansible-supervisor)
 ================
 
 install and configuration supervisor
