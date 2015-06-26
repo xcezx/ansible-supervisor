@@ -1,0 +1,29 @@
+- name: check installed packages
+  shell: rpm -qa
+  register: installed_packages
+
+- name: install supervisor
+  yum:
+    name: "{{ supervisor_rpm_url }}"
+    enablerepo: epel
+  when: installed_packages.stdout.find('supervisor') == -1
+
+- name: configure supervisord.conf
+  ini_file:
+    dest: /etc/supervisord.conf
+    section: "{{ item.section }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value }}"
+    state: "{{ item.state | default('present') }}"
+  with_items:
+    - "{{ supervisord_configs }}"
+  notify: restart supervisord
+
+- name: ensure started supervisord service
+  service:
+    name: supervisord
+    enabled: yes
+
+- command: service supervisord start
+  args:
+    creates: "{{ supervisor_pidfile }}"

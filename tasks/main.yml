@@ -1,0 +1,5 @@
+- name: Add the OS specific variables
+  include_vars: "{{ ansible_distribution }}.yml"
+
+- include: CentOS.yml
+  when: ansible_distribution == "CentOS"
