@@ -1,0 +1,7 @@
+machine:
+  services:
+    - docker
+
+test:
+  override:
+    - docker run -it -v `pwd`:/work -w /work xcezx/ansible:centos6 ansible-playbook -i inventory -c local test.yml
