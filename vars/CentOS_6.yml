@@ -1,0 +1,2 @@
+supervisor_package: "ftp://ftp.pbone.net/mirror/ftp5.gwdg.de/pub/opensuse/repositories/home:/presbrey:/py/EL6/noarch/supervisor-3.0-13.1.noarch.rpm"
+supervisor_pidfile: /var/run/supervisord.pid
